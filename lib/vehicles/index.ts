@@ -1,9 +1,20 @@
-/**
+﻿/**
  * @deprecated Use '@/lib/features/catalog' or '@/lib/features/vehicle' instead
- * This file exists for backward compatibility only
  */
 
-export * from '@/lib/features/catalog';
-export * from '@/lib/features/vehicle';
+export { 
+  searchVehicles,
+  getBrands,
+  getCategories,
+  getFeaturedVehicles,
+  getVehiclesByBrand as getCatalogVehiclesByBrand,
+  countVehicles,
+} from '@/lib/features/catalog';
 
-
+export {
+  getVehicleById,
+  getVehicleBySlug,
+  getSimilarVehicles,
+  getVehiclesByBrand,
+  getVehiclesByCategory,
+} from '@/lib/features/vehicle';

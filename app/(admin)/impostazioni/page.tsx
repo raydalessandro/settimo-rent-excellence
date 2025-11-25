@@ -20,7 +20,7 @@ export default function AdminSettingsPage() {
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [newLeadAlert, setNewLeadAlert] = useState(true);
   const [dailyReport, setDailyReport] = useState(false);
-  const [adminEmail, setAdminEmail] = useState(config.company.email);
+  const [adminEmail, setAdminEmail] = useState(config.app.email);
 
   const handleSave = () => {
     // In una implementazione reale, salverebbe le impostazioni
@@ -138,15 +138,15 @@ export default function AdminSettingsPage() {
               </div>
               <div>
                 <Label className="text-muted-foreground">Versione</Label>
-                <p className="font-medium">{config.app.version}</p>
+                <p className="font-medium">{"1.0.0"}</p>
               </div>
               <div>
                 <Label className="text-muted-foreground">Ambiente</Label>
-                <p className="font-medium">{config.app.environment}</p>
+                <p className="font-medium">{"development"}</p>
               </div>
               <div>
                 <Label className="text-muted-foreground">Azienda</Label>
-                <p className="font-medium">{config.company.name}</p>
+                <p className="font-medium">{config.app.company}</p>
               </div>
             </div>
           </CardContent>

@@ -21,7 +21,7 @@ export default function PreventivoPage() {
   const { data: vehicle } = useVehicle(vehicleId || '');
 
   // Usa preventivo salvato o crea uno nuovo dal veicolo
-  const quote = savedQuote?.data;
+  const quote = savedQuote;
 
   if (!quote && !vehicle) {
     return (
@@ -39,7 +39,7 @@ export default function PreventivoPage() {
             <h1 className="text-3xl font-bold mb-2">Il Tuo Preventivo</h1>
             <p className="text-muted-foreground">
               {quote
-                ? `${quote.vehicle.marca} ${quote.vehicle.modello}`
+                ? `${quote?.vehicle?.marca} ${quote?.vehicle?.modello}`
                 : vehicle
                 ? `${vehicle.marca} ${vehicle.modello}`
                 : ''}
@@ -70,27 +70,27 @@ export default function PreventivoPage() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                   <div>
                     <p className="text-sm text-muted-foreground">Canone Mensile</p>
-                    <p className="text-2xl font-bold">€{quote.canone}</p>
+                    <p className="text-2xl font-bold">€{quote?.pricing?.totale}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Durata</p>
-                    <p className="text-2xl font-bold">{quote.parametri.durata} mesi</p>
+                    <p className="text-2xl font-bold">{quote?.params?.durata} mesi</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Km/Anno</p>
-                    <p className="text-2xl font-bold">{quote.parametri.kmAnno.toLocaleString()}</p>
+                    <p className="text-2xl font-bold">{quote?.params?.kmAnno.toLocaleString()}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Totale</p>
-                    <p className="text-2xl font-bold text-primary">€{quote.totale}</p>
+                    <p className="text-2xl font-bold text-primary">€{quote?.pricing?.totale}</p>
                   </div>
                 </div>
 
-                {quote.vehicle.immagini && quote.vehicle.immagini.length > 0 && (
+                {quote?.vehicle?.immagine && quote?.vehicle?.immagine && (
                   <div className="relative h-64 w-full rounded-lg overflow-hidden mb-6">
                     <Image
-                      src={quote.vehicle.immagini[0]}
-                      alt={`${quote.vehicle.marca} ${quote.vehicle.modello}`}
+                      src={quote?.vehicle?.immagine}
+                      alt={`${quote?.vehicle?.marca} ${quote?.vehicle?.modello}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 800px"
@@ -107,4 +107,7 @@ export default function PreventivoPage() {
     </div>
   );
 }
+
+
+
 

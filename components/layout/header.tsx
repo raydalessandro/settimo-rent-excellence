@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation';
 export function Header() {
   const { user, isAuthenticated } = useAuth();
   const logoutMutation = useLogout();
-  const { data: favoritesCount = 0 } = useFavoritesCount(user?.id || null);
+  const { data: favoritesCount = 0 } = useFavoritesCount();
   const router = useRouter();
 
   const handleLogout = () => {
@@ -103,3 +103,4 @@ export function Header() {
     </header>
   );
 }
+

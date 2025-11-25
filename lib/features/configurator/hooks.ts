@@ -195,7 +195,7 @@ export function useSaveConfiguratorQuote() {
   return useMutation({
     mutationFn: async (userId: string | null) => {
       if (!quote) throw new Error('Nessun preventivo da salvare');
-      return saveQuote(storage, userId, quote);
+      return saveQuote(storage as any, userId, quote);
     },
   });
 }
@@ -213,5 +213,6 @@ export function useInitConfiguratorWithVehicle(vehicle: Vehicle | null) {
     }
   }, [vehicle, vehicleId, setVehicle]);
 }
+
 
 

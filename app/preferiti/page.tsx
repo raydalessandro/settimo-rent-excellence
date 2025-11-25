@@ -10,7 +10,7 @@ import { Heart } from 'lucide-react';
 
 export default function PreferitiPage() {
   const { user, isAuthenticated } = useAuthState();
-  const { data: vehicles, isLoading } = useFavoriteVehicles(user?.id || null);
+  const { data: vehicles, isLoading } = useFavoriteVehicles();
 
   if (!isAuthenticated) {
     return (
@@ -73,4 +73,5 @@ export default function PreferitiPage() {
     </div>
   );
 }
+
 

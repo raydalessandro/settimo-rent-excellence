@@ -48,7 +48,7 @@ export default function ConfiguratorPage() {
 
     setIsCalculating(true);
     try {
-      const quoteData = await calculateQuote(vehicle.id, params, servicesData);
+      const quoteData = await calculateQuote(vehicle, params, servicesData as any);
       setQuote(quoteData);
       setCurrentStep(4);
     } catch (error) {
@@ -114,4 +114,6 @@ export default function ConfiguratorPage() {
     </div>
   );
 }
+
+
 

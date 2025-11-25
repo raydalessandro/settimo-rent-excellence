@@ -15,7 +15,7 @@ import type { SavedQuote } from '@/lib/quotes/types';
 
 export default function MyQuotesPage() {
   const { user, isAuthenticated } = useAuthState();
-  const { data: quotes, isLoading } = useUserQuotes(user?.id || null);
+  const { data: quotes, isLoading } = useUserQuotes();
 
   if (!isAuthenticated) {
     return (
@@ -82,9 +82,9 @@ export default function MyQuotesPage() {
               <div className="flex items-start justify-between">
                 <div>
                   <CardTitle>
-                    {quote.data.vehicle.marca} {quote.data.vehicle.modello}
+                    {quote.vehicle.marca} {quote.vehicle.modello}
                   </CardTitle>
-                  <CardDescription>{quote.data.vehicle.versione}</CardDescription>
+                  <CardDescription>{quote.vehicle.versione}</CardDescription>
                 </div>
                 <Badge variant="outline">
                   <Calendar className="h-3 w-3 mr-1" />
@@ -96,19 +96,19 @@ export default function MyQuotesPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                 <div>
                   <p className="text-sm text-muted-foreground">Canone Mensile</p>
-                  <p className="text-xl font-bold">€{quote.data.canone}</p>
+                  <p className="text-xl font-bold">€{quote.pricing.totale}</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Durata</p>
-                  <p className="text-xl font-bold">{quote.data.parametri.durata} mesi</p>
+                  <p className="text-xl font-bold">{quote.params.durata} mesi</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Km/Anno</p>
-                  <p className="text-xl font-bold">{quote.data.parametri.kmAnno.toLocaleString()}</p>
+                  <p className="text-xl font-bold">{quote.params.kmAnno.toLocaleString()}</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Totale</p>
-                  <p className="text-xl font-bold text-primary">€{quote.data.totale}</p>
+                  <p className="text-xl font-bold text-primary">€{quote.pricing.totale}</p>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -135,4 +135,9 @@ export default function MyQuotesPage() {
     </div>
   );
 }
+
+
+
+
+
 

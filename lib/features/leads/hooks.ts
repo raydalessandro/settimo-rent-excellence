@@ -73,7 +73,7 @@ export function useCreateLead(context?: Partial<LeadFormContext>) {
         funnelStep: context?.funnelStep || currentStep,
       };
 
-      return createLead(storage, formData, fullContext, attribution);
+      return createLead(storage, { ...formData, marketingAccepted: formData.marketingAccepted ?? false }, fullContext, attribution);
     },
     onSuccess: (result) => {
       if (result.success && result.lead) {
@@ -189,5 +189,6 @@ export function useLeadContextFromConfigurator() {
     funnelStep: currentStep,
   };
 }
+
 
 

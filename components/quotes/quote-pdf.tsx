@@ -68,7 +68,7 @@ interface QuotePDFProps {
 }
 
 export function QuotePDF({ quote }: QuotePDFProps) {
-  const data = 'data' in quote ? quote.data : quote;
+  const data = quote as any;
 
   return (
     <Document>
@@ -123,7 +123,7 @@ export function QuotePDF({ quote }: QuotePDFProps) {
         {data.servizi.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Servizi Aggiuntivi</Text>
-            {data.servizi.map((servizio, index) => (
+            {data.servizi.map((servizio: string, index: number) => (
               <Text key={index}>• {servizio}</Text>
             ))}
           </View>
@@ -150,4 +150,6 @@ export function QuotePDF({ quote }: QuotePDFProps) {
     </Document>
   );
 }
+
+
 

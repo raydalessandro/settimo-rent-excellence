@@ -47,13 +47,7 @@ export function OrderForm({ quoteId }: OrderFormProps) {
   const onSubmit = async (data: OrderFormData) => {
     setIsSubmitting(true);
     try {
-      await createOrder.mutateAsync({
-        userId: user?.id || null,
-        orderData: {
-          ...data,
-          quoteId,
-        },
-      });
+      await createOrder.mutateAsync({ ...data, cognome: '', privacyAccepted: true });
       toast.success('Richiesta inviata con successo! Ti contatteremo presto.');
       reset();
     } catch (error) {
@@ -127,4 +121,6 @@ export function OrderForm({ quoteId }: OrderFormProps) {
     </Card>
   );
 }
+
+
 

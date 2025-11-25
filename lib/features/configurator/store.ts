@@ -264,9 +264,12 @@ export const useConfiguratorStore = create<ConfiguratorStore>()(
         quote: state.quote,
         entrySource: state.entrySource,
         entryCampaign: state.entryCampaign,
-      }),
+        isCalculating: false,
+      }) as any,
     }
   )
 );
+
+
 
 

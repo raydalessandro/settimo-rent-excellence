@@ -49,9 +49,7 @@ export const leadFormSchema = z.object({
     .boolean()
     .refine(val => val === true, 'Devi accettare la privacy policy'),
   
-  marketingAccepted: z
-    .boolean()
-    .default(false),
+  marketingAccepted: z.boolean().optional(),
 });
 
 export type LeadFormSchema = z.infer<typeof leadFormSchema>;
@@ -117,5 +115,6 @@ export function formatPhoneNumber(phone: string): string {
   
   return cleaned;
 }
+
 
 

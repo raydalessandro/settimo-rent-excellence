@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { useSearchVehicles } from '@/lib/vehicles/hooks';
 import { VehicleGrid } from '@/components/vehicles/vehicle-grid';
 import { VehicleFilters } from '@/components/vehicles/vehicle-filters';
-import type { VehicleFilters as VehicleFiltersType } from '@/lib/vehicles/types';
+import { DEFAULT_FILTERS, type CatalogFiltersState } from '@/lib/features/catalog';
 
 export default function OffertePage() {
-  const [filters, setFilters] = useState<VehicleFiltersType>({
-    disponibile: true,
+  const [filters, setFilters] = useState<CatalogFiltersState>({
+    ...DEFAULT_FILTERS,
   });
-  const { data: vehicles, isLoading } = useSearchVehicles(filters);
+  const { vehicles, isLoading } = useSearchVehicles(filters);
 
   return (
     <div className="container py-8 px-4">
@@ -23,7 +23,7 @@ export default function OffertePage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-1">
-          <VehicleFilters filters={filters} onFiltersChange={setFilters} />
+          <VehicleFilters filters={filters as any} onFiltersChange={setFilters as any} />
         </div>
         <div className="lg:col-span-3">
           {isLoading ? (
@@ -44,4 +44,8 @@ export default function OffertePage() {
     </div>
   );
 }
+
+
+
+
 

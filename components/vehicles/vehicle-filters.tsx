@@ -14,7 +14,7 @@ interface VehicleFiltersProps {
 }
 
 export function VehicleFilters({ filters, onFiltersChange }: VehicleFiltersProps) {
-  const { data: allVehicles } = useVehicles();
+  const { vehicles: allVehicles } = useVehicles({ marca: [], categoria: [], fuel: [], anticipo_zero: undefined, canone_min: undefined, canone_max: undefined, search: '' });
   const [localFilters, setLocalFilters] = useState(filters);
 
   useEffect(() => {
@@ -168,4 +168,6 @@ export function VehicleFilters({ filters, onFiltersChange }: VehicleFiltersProps
     </Card>
   );
 }
+
+
 

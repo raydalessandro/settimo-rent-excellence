@@ -43,7 +43,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true);
     try {
-      await registerUser(data);
+      await registerUser({ ...data, acceptTerms: true });
       toast.success('Registrazione completata con successo!');
       router.push('/');
     } catch (error) {
@@ -131,4 +131,5 @@ export default function RegisterPage() {
     </div>
   );
 }
+
 

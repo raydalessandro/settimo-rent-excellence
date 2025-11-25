@@ -28,7 +28,7 @@ export default function VehicleDetailPage({
   const { id } = use(params);
   const { data: vehicle, isLoading } = useVehicle(id);
   const { user, isAuthenticated } = useAuthState();
-  const { data: isFavorite = false } = useFavoriteStatus(user?.id || null, id);
+  const { data: isFavorite = false } = useFavoriteStatus(id);
   const toggleFavorite = useToggleFavorite();
   const router = useRouter();
 
@@ -40,7 +40,6 @@ export default function VehicleDetailPage({
     }
 
     toggleFavorite.mutate({
-      userId: user!.id,
       vehicleId: id,
       isCurrentlyFavorite: isFavorite,
     });
@@ -205,4 +204,6 @@ export default function VehicleDetailPage({
     </div>
   );
 }
+
+
 
